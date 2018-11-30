@@ -1,7 +1,7 @@
-car:
+s2000:
   make: "Honda"
   model: "s2000"
-  engineType: "Naturally aspirated inline-4"
+  engineType: "Supercharged Naturally aspirated inline-4"
   displacement: 1997
   redline: 8300
   weight: 1250
@@ -9,5 +9,33 @@ car:
   width: 1750
   length: 4135
   wheelBase: 2400
-  bhp: 247
+  bhp: 447
   year: 2003
+
+exige:
+  make: "Lotus"
+  model: "Exige Series 3"
+  engineType: "Supercharged v6"
+  displacement: 3500
+  redline: 8200
+  weight: 1176
+  height: 1158
+  width: 1727
+  length: 3797
+  wheelBase: 2400
+  bhp: 345
+  year: 2004
+
+skyline:
+  make: "Nissan"
+  model: "NISMO Skyline 400R"
+  engineType: "Twin-turbo inline-6"
+  displacement: 2600
+  redline: 8200
+  weight: 1430
+  height: 1341
+  width: 1727
+  length: 4545
+  wheelBase: 2615
+  bhp: 500
+  year: 1997
