@@ -1,12 +1,8 @@
-import org.json.JSONObject;
 
 import javax.inject.Inject;
-import java.util.Arrays;
 
-public class Car {
+public class Car extends Configurable{
 
-    @Inject
-    JSONObject config;
     @Inject
     Passenger passenger;
 
@@ -22,20 +18,6 @@ public class Car {
     int wheelBase;
     int bhp;
     int year;
-
-
-    Car init(){
-        Arrays.asList(this.getClass().getDeclaredFields()).stream()
-                .filter( field -> field.getAnnotation(Inject.class) == null)
-                .forEach( field -> {
-                    try {
-                        field.set(this, config.get(field.getName()));
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
-        return this;
-    }
 
     @Override
     public String toString() {

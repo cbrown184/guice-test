@@ -11,7 +11,7 @@ public class DriveModule extends AbstractModule {
 
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new DriveModule());
-        injector.getInstance(Car.class).init();
+        injector.getInstance(Car.class).configure();
         injector.getInstance(Track.class).drive();
     }
 
