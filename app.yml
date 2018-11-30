@@ -1,0 +1,13 @@
+car:
+  make: "Honda"
+  model: "s2000"
+  engineType: "Naturally aspirated inline-4"
+  displacement: 1997
+  redline: 8300
+  weight: 1250
+  height: 1270
+  width: 1750
+  length: 4135
+  wheelBase: 2400
+  bhp: 247
+  year: 2003
