@@ -1,9 +1,11 @@
 import javax.inject.Inject;
-import java.util.Random;
+import java.util.List;
 
 public class LagunaSeca implements Track{
     @Inject
-    private Car car;
+    private List<Car> carList;
+    @Inject
+    private LeaderBoard leaderBoard;
 
     private final String trackName = "Laguna Seca";
     private final double length = 3.602;
@@ -21,9 +23,9 @@ public class LagunaSeca implements Track{
     }
 
     @Override
-    public void drive() {
+    public void race() {
         System.out.println(toString());
-        System.out.println(car);
-        System.out.println("Your time: " + (new Random().nextInt(60) + 100) + " s.");
+        carList.stream().forEach( car -> car.race(leaderBoard));
+        leaderBoard.displayTimes();
     }
 }

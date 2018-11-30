@@ -1,5 +1,7 @@
+import org.json.JSONObject;
 
 import javax.inject.Inject;
+import java.util.Random;
 
 public class Car extends Configurable{
 
@@ -18,6 +20,14 @@ public class Car extends Configurable{
     int wheelBase;
     int bhp;
     int year;
+
+    public void race(LeaderBoard leaderBoard){
+        leaderBoard.registerTime(this, (new Random().nextInt(60) + 60 ));
+    }
+
+    public Car(JSONObject config) {
+        configure(config);
+    }
 
     @Override
     public String toString() {
