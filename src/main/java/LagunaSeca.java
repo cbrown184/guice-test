@@ -3,18 +3,18 @@ import java.util.Random;
 
 public class LagunaSeca implements Track{
     @Inject
-    Car car;
+    private Car car;
 
-    private String trackName = "Laguna Seca";
-    double length = 3.602;
-    double elevationChange = 55;
-    double lapRecord = 66.309;
+    private final String trackName = "Laguna Seca";
+    private final double length = 3.602;
+    private final double elevationChange = 55;
+    private final double lapRecord = 66.309;
 
     @Override
     public String toString() {
         return "Track{" +
                 "trackName='" + trackName + '\'' +
-                ", length=" + length + "km" +
+                ", length=" + length + "m" +
                 ", elevationChange=" + elevationChange + "m" +
                 ", lapRecord=" + lapRecord + "s" +
                 '}';

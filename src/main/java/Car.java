@@ -1,6 +1,7 @@
 import org.json.JSONObject;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 
 public class Car {
 
@@ -24,18 +25,15 @@ public class Car {
 
 
     Car init(){
-        make = config.getString("make");
-        model = config.getString("model");
-        engineType = config.getString("engineType");
-        displacement = config.getInt("displacement");
-        redline = config.getInt("redline");
-        weight = config.getInt("weight");
-        height = config.getInt("height");
-        width = config.getInt("width");
-        length = config.getInt("length");
-        wheelBase = config.getInt("wheelBase");
-        bhp = config.getInt("bhp");
-        year = config.getInt("year");
+        Arrays.asList(this.getClass().getDeclaredFields()).stream()
+                .filter( field -> field.getAnnotation(Inject.class) == null)
+                .forEach( field -> {
+                    try {
+                        field.set(this, config.get(field.getName()));
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
         return this;
     }
 
