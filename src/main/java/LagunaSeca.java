@@ -14,7 +14,7 @@ public class LagunaSeca implements Track{
     public String toString() {
         return "Track{" +
                 "trackName='" + trackName + '\'' +
-                ", length=" + length + "m" +
+                ", length=" + length + "km" +
                 ", elevationChange=" + elevationChange + "m" +
                 ", lapRecord=" + lapRecord + "s" +
                 '}';
