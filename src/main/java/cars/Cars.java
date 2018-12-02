@@ -1,6 +1,8 @@
 package cars;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
+import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,13 +10,25 @@ import java.util.List;
 public class Cars {
 
     @Inject
-    Exige exige;
+    CarFactory carFactory;
+
     @Inject
-    S2000 s2000;
+    @Named("exigeConf")
+    JSONObject exigeConf;
+
     @Inject
-    Skyline skyline;
+    @Named("s2000Conf")
+    JSONObject s2000Conf;
+
+    @Inject
+    @Named("skylineConf")
+    JSONObject skylineConf;
 
     public List<Car> getCars() {
-        return Arrays.asList(exige, s2000, skyline);
+        return Arrays.asList(
+                carFactory.create(exigeConf),
+                carFactory.create(s2000Conf),
+                carFactory.create(skylineConf)
+        );
     }
 }

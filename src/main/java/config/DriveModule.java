@@ -1,16 +1,21 @@
 package config;
 
-import cars.Exige;
-import cars.S2000;
-import cars.Skyline;
+import cars.*;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
+import com.google.inject.assistedinject.FactoryProvider;
+import com.google.inject.name.Names;
+import org.json.JSONObject;
 import race.LagunaSeca;
 import race.LeaderBoard;
 import race.Passenger;
 import race.Track;
+import util.JsonUtils;
+
+import java.io.IOException;
 
 public class DriveModule extends AbstractModule {
 
@@ -23,13 +28,18 @@ public class DriveModule extends AbstractModule {
     protected void configure() {
 
         try {
-            bind(Exige.class).toConstructor(Exige.class.getConstructor());
-            bind(S2000.class).toConstructor(S2000.class.getConstructor());
-            bind(Skyline.class).toConstructor(Skyline.class.getConstructor());
+            JSONObject properties = JsonUtils.getProperties();
+
+            bind(JSONObject.class).annotatedWith(Names.named("exigeConf")).toInstance(properties.getJSONObject("exige"));
+            bind(JSONObject.class).annotatedWith(Names.named("s2000Conf")).toInstance(properties.getJSONObject("s2000"));
+            bind(JSONObject.class).annotatedWith(Names.named("skylineConf")).toInstance(properties.getJSONObject("skyline"));
+
+            bind(CarFactory.class).toProvider(FactoryProvider.newFactory(CarFactory.class, Car.class));
             bind(LeaderBoard.class).asEagerSingleton();
             bind(Track.class).to(LagunaSeca.class).asEagerSingleton();
 
-        } catch (NoSuchMethodException e) {
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
