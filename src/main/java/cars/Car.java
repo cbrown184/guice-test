@@ -29,14 +29,16 @@ public class Car extends Configurator {
     @NonConfigurable
     LeaderBoard leaderBoard;
 
+    @Inject
+    public Car(@Assisted JSONObject config){
+        configure(config);
+    }
+
     public void race() {
         Random random = new Random();
         leaderBoard.registerTime(this, random.nextInt(60) + 60);
     }
 
-    @Inject public Car(@Assisted JSONObject config){
-        configure(config);
-    }
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this);

@@ -1,19 +1,29 @@
 package race;
 
-import cars.Cars;
+import cars.CarsFactory;
+import config.Configurator;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.json.JSONObject;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.logging.Logger;
 
-public class LagunaSeca implements Track {
+public class LagunaSeca extends Configurator {
 
-    private final String trackName = "Laguna Seca";
-    private final double length = 3.602;
-    private final double elevationChange = 55;
-    private final double lapRecord = 66.309;
+
+
+    private String trackName;
+    private double length;
+    private double elevationChange;
+    private double lapRecord;
+
     @Inject
-    Cars cars;
+    @Named("lagunaSeca")
+    JSONObject jsonObject;
+
+    @Inject
+    CarsFactory cars;
     @Inject
     private Logger logger;
     @Inject
@@ -24,7 +34,10 @@ public class LagunaSeca implements Track {
         return ReflectionToStringBuilder.toString(this);
     }
 
-    @Override
+    public LagunaSeca init(){
+        configure(jsonObject);
+        return this;
+    }
     public void race() {
         logger.info(this::toString);
         cars.getCars().stream().forEach(car -> car.race());

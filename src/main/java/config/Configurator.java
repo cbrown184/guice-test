@@ -1,11 +1,14 @@
 package config;
 
+import com.google.inject.assistedinject.Assisted;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
 import java.util.Arrays;
 
+
 public class Configurator {
+
 
     protected Configurator configure(JSONObject config) {
         Arrays.stream(getClass().getDeclaredFields())
