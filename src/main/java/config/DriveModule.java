@@ -1,6 +1,5 @@
 package config;
 
-import cars.Cars;
 import cars.Exige;
 import cars.S2000;
 import cars.Skyline;
@@ -24,12 +23,12 @@ public class DriveModule extends AbstractModule {
     protected void configure() {
 
         try {
-            bind(LeaderBoard.class).asEagerSingleton();
-            bind(Track.class).to(LagunaSeca.class).asEagerSingleton();
             bind(Exige.class).toConstructor(Exige.class.getConstructor());
             bind(S2000.class).toConstructor(S2000.class.getConstructor());
             bind(Skyline.class).toConstructor(Skyline.class.getConstructor());
-            bind(Cars.class);
+            bind(LeaderBoard.class).asEagerSingleton();
+            bind(Track.class).to(LagunaSeca.class).asEagerSingleton();
+
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }

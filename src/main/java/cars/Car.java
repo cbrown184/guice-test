@@ -1,12 +1,14 @@
 package cars;
 
 import com.google.inject.Inject;
-import config.Configurable;
+import config.Configurator;
+import config.NonConfigurable;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import race.LeaderBoard;
 
 import java.util.Random;
 
-public class Car extends Configurable {
+public class Car extends Configurator {
 
     String make;
     String model;
@@ -20,29 +22,18 @@ public class Car extends Configurable {
     int wheelBase;
     int bhp;
     int year;
+
     @Inject
+    @NonConfigurable
     LeaderBoard leaderBoard;
 
-    public void race(){
+    public void race() {
         Random random = new Random();
         leaderBoard.registerTime(this, random.nextInt(60) + 60);
     }
 
     @Override
     public String toString() {
-        return "cars.Car{" +
-                "make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", engineType='" + engineType + '\'' +
-                ", displacement=" + displacement + " cc" +
-                ", redline=" + redline + "rpm" +
-                ", weight=" + weight + " kg" +
-                ", height=" + height + "mm" +
-                ", width=" + width + " mm" +
-                ", length=" + length + " mm" +
-                ", wheelBase=" + wheelBase + " mm" +
-                ", bhp=" + bhp +
-                ", year=" + year +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 }

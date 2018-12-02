@@ -14,7 +14,7 @@ public class Cars {
     @Inject
     Skyline skyline;
 
-    public List<Car> getCars(){
+    public List<Car> getCars() {
         return Arrays.asList(exige, s2000, skyline);
     }
 }

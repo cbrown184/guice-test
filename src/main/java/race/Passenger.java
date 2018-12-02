@@ -1,5 +1,7 @@
 package race;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 public class Passenger {
     private String name;
     private int age;
@@ -13,10 +15,6 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "race.Passenger{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", weight=" + weight + "kg" +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 }

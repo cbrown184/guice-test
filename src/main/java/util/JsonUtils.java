@@ -15,14 +15,14 @@ public class JsonUtils {
     public static JSONObject getProperties() throws IOException {
         return convertYamlToJson(readFile("app.yml", StandardCharsets.UTF_8));
     }
-    static String readFile(String path, Charset encoding)
-            throws IOException
-    {
+
+    private static String readFile(String path, Charset encoding)
+            throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
 
-    static JSONObject convertYamlToJson(String yaml) throws IOException {
+    private static JSONObject convertYamlToJson(String yaml) throws IOException {
         ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
         Object obj = yamlReader.readValue(yaml, Object.class);
         ObjectMapper jsonWriter = new ObjectMapper();
